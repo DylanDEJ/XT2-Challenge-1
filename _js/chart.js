@@ -2,13 +2,17 @@ let participantChart = document.getElementById('participantChart').getContext('2
 let activityChart = document.getElementById('activityChart').getContext('2d')
 let signChart = document.getElementById('signChart').getContext('2d')
 
-Chart.defaults.global.defaultFontColor = '#E5E5E54'
+Chart.defaults.global.defaultFontColor = '#252525'
+Chart.defaults.global.defaultFontFamily = 'Oxanium';
 
-function random(){return Math.floor(Math.random() * 20) + 1;};
+
+function random() {
+    return Math.floor(Math.random() * 20) + 1;
+};
 
 function sortNumber(a, b) {
-    return b - a;
-}
+        return b - a;
+};
 
 let numArray = [random(),random(),random(),random(),random()];
 numArray.sort(sortNumber);
@@ -16,7 +20,12 @@ numArray.sort(sortNumber);
 
 function getTime(hour){
     var date = new Date();
-    return date.getHours() + hour + ":00";
+    if(date.getHours() + hour >= 24){
+        return "0" + hour + ":00"
+    }
+    else{
+        return date.getHours() + hour + ":00";
+    }
 }
 
 
@@ -25,7 +34,7 @@ let currentParticipantChart = new Chart(participantChart, {
     data:{
         labels:['Kartbaan', 'Lasergamen', 'Escaperoom', 'Bioscoop', 'Voetballen','Hockey','Pool','Dansles'],
         datasets:[{
-            label:'Activiteiten',
+            label:'Actuele deelnemers',
             data:[
             random(),
             random(),
@@ -35,6 +44,16 @@ let currentParticipantChart = new Chart(participantChart, {
             random(),
             random(),
             random()
+            ],
+            backgroundColor:[
+                '#1ab967',
+                '#e94040',
+                '#8560a8',
+                '#252525',
+                '#c7b299',
+                '#0072bc',
+                '#f68e56',
+                '#6dcff6'
             ]
         }]
     },
@@ -42,15 +61,11 @@ let currentParticipantChart = new Chart(participantChart, {
     options:{
         title:{
             display: true,
-            text: 'Activiteiten',
-            fontSize: 25
+            text: 'Actuele Deelnemers',
+            fontSize: 20
         },
         legend:{
-            display: false
-        },
-        labelling:{
-            display: true,
-            labelString: 'hoi'
+            position: 'left'
         }
     }
 })
@@ -61,15 +76,25 @@ let topActivityChart = new Chart(activityChart, {
         labels:['Kartbaan', 'Lasergamen', 'Escaperoom', 'Bioscoop', 'Voetballen'],
         datasets:[{
             label:'Activiteiten',
-            data:numArray.sort(sortNumber)
+            data:numArray.sort(sortNumber),
+            backgroundColor:[
+                '#1ab967',
+                '#e94040',
+                '#8560a8',
+                '#252525',
+                '#c7b299'
+            ]
             }]
     },
     
     options:{
         title:{
             display: true,
-            text: 'Activiteiten',
-            fontSize: 25
+            text: 'Top 5 activeiten gekozen door passagiers',
+            fontSize: 20
+        },
+        legend: {
+            display: false
         }
     }
 })
@@ -82,7 +107,7 @@ let signActivityChart  = new Chart(signChart, {
         {
             label:'Kartbaan',
             lineTension: 0,
-            borderColor: 'green',
+            borderColor: '#1ab967',
             data:[            
                 random(),
                 random(),
@@ -94,7 +119,7 @@ let signActivityChart  = new Chart(signChart, {
         {
             label:'Lasergamen',
             lineTension: 0,
-            borderColor: 'red',
+            borderColor: '#e94040',
             data:[            
                 random(),
                 random(),
@@ -106,7 +131,7 @@ let signActivityChart  = new Chart(signChart, {
         {
             label:'Escaperoom',
             lineTension: 0,
-            borderColor: 'black',
+            borderColor: '#8560a8',
             data:[            
                 random(),
                 random(),
@@ -118,7 +143,7 @@ let signActivityChart  = new Chart(signChart, {
         {
             label:'Bioscoop',
             lineTension: 0,
-            borderColor: 'yellow',
+            borderColor: '#252525',
             data:[            
                 random(),
                 random(),
@@ -130,7 +155,7 @@ let signActivityChart  = new Chart(signChart, {
         {
             label:'Voetballen',
             lineTension: 0,
-            borderColor: 'white',
+            borderColor: '#c7b299',
             data:[            
                 random(),
                 random(),
@@ -142,7 +167,7 @@ let signActivityChart  = new Chart(signChart, {
         {
             label:'Hockey',
             lineTension: 0,
-            borderColor: 'pink',
+            borderColor: '#0072bc',
             data:[            
                 random(),
                 random(),
@@ -154,7 +179,7 @@ let signActivityChart  = new Chart(signChart, {
         {
             label:'Pool',
             lineTension: 0,
-            borderColor: 'blue',
+            borderColor: '#f68e56',
             data:[           
                 random(),
                 random(),
@@ -166,7 +191,7 @@ let signActivityChart  = new Chart(signChart, {
         {
             label:'Dansles',
             lineTension: 0,
-            borderColor: 'purple',
+            borderColor: '#6dcff6',
             data:[            
                 random(),
                 random(),
@@ -181,8 +206,8 @@ let signActivityChart  = new Chart(signChart, {
     options: {
         title:{
             display: true,
-            text: 'Activiteiten',
-            fontSize: 25
+            text: 'Aantal inschrijven per activiteit',
+            fontSize: 20
         },
         legend: {
             align: 'center',
