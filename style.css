@@ -24,6 +24,7 @@ main {
 
 .logo {
     width: 300px;
+    padding: 10px;
 }
 
 body {
@@ -89,15 +90,11 @@ body {
 
 @media only screen and (min-width: 1700px) {
 
-    .actueel{
-        
-    }
-    
     .topvijf {
-        max-width: 500px;        
+        max-width: 450px;        
     }
 
     .aantaldeelnemers {
-        max-width: 500px;        
+        max-width: 450px;        
     } 
 }
